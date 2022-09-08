@@ -1,10 +1,12 @@
 "use strict"
+
 // 表示するデータ数
 const num = 151;
 
 // データの保管
 let pokemonArray = [];
 let pokemon = {
+    id: "",
     name: "",
     type: "",
     image: "",
@@ -19,6 +21,7 @@ async function main() {
         const data = await res.json();
 
         // オブジェクトに追加
+        pokemon.id = data['id'];
         pokemon.name = data['name'];
         pokemon.type = data['types'][0]['type']['name'];
         pokemon.image = data['sprites']['front_default'];
@@ -38,13 +41,16 @@ async function main() {
     for (let i = 0; i < pokemonArray.length; i++) {
         html +=
             "<div>" +
-            "<div class='card'>" +
+            `<div class='card' id='${i + 1}'>` +
             "<div class='row'>" +
             "<span class='name'>" + pokemonArray[i].name + "</span>" +
             "<span class='type'>" + pokemonArray[i].type + "</span>" +
             "</div>" +
             "<div class='image'>" +
             `<img src="${pokemonArray[i].image}">` +
+            "</div>" +
+            "<div>" +
+            "<span class='id'>" + pokemonArray[i].id + "</span>" +
             "</div>" +
             "</div>" +
             "</div>"

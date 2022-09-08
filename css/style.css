@@ -1,13 +1,23 @@
-body {
+* {
     padding: 0;
     margin: 0;
 }
 
 .container {
-    width: 80%;
     max-width: 700px;
+    width: 80%;
     margin: 0 auto;
+}
+
+header {
+    padding: 40px;
     text-align: center;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
 }
 
 .card {
@@ -25,14 +35,50 @@ body {
 
 .name {
     font-weight: bold;
+    font-size: 70%;
 }
 
-.type {}
+.type {
+    font-size: 70%;
+    background-color: pink;
+}
 
 .image {
     border: dotted 1px gray;
 }
 
 img {
-    width: 50%;
+    width: 100%;
+}
+
+.id {
+    font-size: 50%;
+}
+
+/* スマホ表示 */
+@media (max-width: 480px) {
+    header {
+        padding: 30px;
+        font-size: 12px;
+    }
+
+    .app {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card {
+        width: 60%;
+    }
+
+    .name {
+        font-size: 50%;
+    }
+
+    .type {
+        font-size: 50%;
+    }
+
+    img {
+        width: 100%;
+    }
 }
