@@ -1,2 +1,2 @@
 # poke-card
-PokeAPIを使ったpoke-cardアプリ
+PokeAPIを使ったPokeCardアプリ
