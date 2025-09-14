@@ -72,9 +72,10 @@ div.innerHTML = html;
 - 配列をもとにHTMLを文字列で生成
 - 最後にまとめて画面に表示
 
-## シリーズ比較表（web-1, web-2, web-3）
-| シリーズ名 | UI の特徴 | 技術的な工夫 |
-|------------|-----------|--------------|
-| [web-1](https://taiyo8911.github.io/pokemon-view-web-1/) | シンプルな一覧表示。小規模データ向け。 | HTML + CSS のみで最小構成。軽量。 |
-| [web-2](https://taiyo8911.github.io/pokemon-view-web-2/) | 一覧＋検索ボックスで目的のポケモンを探せる。 | JavaScript による検索・フィルタリング機能を追加。 |
-| [web-3](https://taiyo8911.github.io/pokemon-view-web-3/) | ギャラリー形式で画像を大きく表示。スマホでも見やすい。 | レスポンシブデザイン対応。CSS Grid / Flexbox を駆使。 |
+## シリーズ比較表（web-1, web-2, web-3 の違い）
+
+| シリーズ | UI の特徴 | 技術的な工夫 |
+|---|---:|---|
+| [web-1](https://taiyo8911.github.io/pokemon-view-web-1/) | ID・タイプ・英語名・日本語名・画像を一覧表示。 | `fetch` をループで順次実行して各ポケモン情報を取得。データはフィールド別の配列で保持。日本語名はローカルファイル `name_trans.json から取得変換して表示。|
+| [web-2](https://taiyo8911.github.io/pokemon-view-web-2/) | ID・Name・たかさ(m)・おもさ(kg)）を一覧表示。ヘッダ下のボタンで「たかさ」「おもさ」を昇順・降順に切替可能。ウェブフォント適用。 | `pokemon-species` エンドポイントで種情報を取り、`varieties[0].pokemon.url` から実体の Pokemon API を取得。`generateTableRow()` が `<tr>` を DOM で生成して返す実装。複数の `generateTableRow()` を `Promise.all` で並列実行して効率的に取得・生成し、取得後に行をまとめて `<tbody>` に追加。ソートは DOM 内の該当列テキストを比較して並べ替え。 |
+| [web-3](https://taiyo8911.github.io/pokemon-view-web-3/) | ID・名前・タイプ・画像 をカード形式で表示。| まず API で全データを配列 `pokemonArray` に取得して格納（データ取得ループ）。その後、配列を走査してテンプレート文字列で HTML を連結し、`div.innerHTML = html` で一括挿入。データ取得と HTML 生成を分離することで DOM 書き換え回数を減らし高速化。 |
